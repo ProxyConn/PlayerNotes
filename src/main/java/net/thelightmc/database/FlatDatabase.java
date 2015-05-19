@@ -1,7 +1,6 @@
 package net.thelightmc.database;
 
 import net.thelightmc.Note;
-import net.thelightmc.util.FileUtil;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -12,8 +11,8 @@ import java.util.Collection;
  */
 
 public class FlatDatabase implements Database {
-    private File file;
 
+    private File file;
     public FlatDatabase(File file) {
 
         this.file = file;
@@ -22,13 +21,11 @@ public class FlatDatabase implements Database {
 
     @Override
     public void save(Collection<? extends Note> notes) throws IOException {
-        String temp = file.getName();
-        file.delete();
-        file = FileUtil.getFile(temp,true);
         FileWriter writer = new FileWriter(getFile());
         for (Note note : notes) {
-            writer.write(note.getTarget() + ":" + note.getSender() + ":" + note.getContent() + "\n");
+            writer.write(note.getTarget() + ":" + note.getSender() + ":" + note.getContent().replaceAll(" ","|") + "\n");
         }
+        writer.flush();
         writer.close();
     }
 

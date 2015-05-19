@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class NoteManager {
     private final static NoteManager instance = new NoteManager();
-    private static ArrayList<Note> noteList = new ArrayList<>();
+    private final ArrayList<Note> noteList = new ArrayList<>();
     public static NoteManager getInstance() {
         return instance;
     }
@@ -31,5 +31,8 @@ public class NoteManager {
 
     public void addNote(Note note) {
         noteList.add(note);
+    }
+    public void removeNote(Note note) {
+        noteList.remove(note);
     }
 }

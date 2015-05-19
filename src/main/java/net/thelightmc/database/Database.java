@@ -12,6 +12,6 @@ public interface Database {
     Collection<? extends Note> load();
     DataType getType();
     enum DataType {
-        MySQL,FlatFile;
+        MySQL,FlatFile
     }
 }
